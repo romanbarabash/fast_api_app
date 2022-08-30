@@ -20,7 +20,6 @@ def create_job(job: JobCreate, db: Session = Depends(get_db)):
 @router.get("/get/{id}", response_model=ShowJob)
 def retreive_job_by_id(id: int, db: Session = Depends(get_db)):
     job = retreive_job(id=id, db=db)
-    print(job)
     if not job:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Job with id {id} does not exist")

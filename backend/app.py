@@ -26,6 +26,7 @@ app = start()
 
 
 @app.get('/')
+# TODO - remove
 def hello_api():
     return {'detail': 'Hello World'}
 
