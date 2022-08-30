@@ -1,21 +1,22 @@
 from sqlalchemy.orm import Session
 
+from backend.api.api_models.jobs import JobCreateModel
 from backend.db import Job
-from backend.schemas.jobs import JobCreate
 
 
-def create_new_job(job: JobCreate, db: Session, owner_id: int):
-    job_model = Job(title=job.title,
-                    company=job.company,
-                    location=job.location,
-                    description=job.description,
-                    company_url=job.company_url,
-                    date_posted=job.date_posted,
+
+def create_new_job(job_model: JobCreateModel, db: Session, owner_id: int):
+    job = Job(title=job_model.title,
+                    company=job_model.company,
+                    location=job_model.location,
+                    description=job_model.description,
+                    company_url=job_model.company_url,
+                    date_posted=job_model.date_posted,
                     owner_id=owner_id)
-    db.add(job_model)
+    db.add(job)
     db.commit()
-    db.refresh(job_model)
-    return job_model
+    db.refresh(job)
+    return job
 
 
 def retreive_job(id: int, db: Session):

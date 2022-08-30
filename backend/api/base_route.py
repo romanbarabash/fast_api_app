@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from backend.apis.version1 import route_users, route_jobs
+from backend.api.version1 import route_users, route_jobs
 
 api_router = APIRouter()
 

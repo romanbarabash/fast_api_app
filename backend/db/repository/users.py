@@ -1,11 +1,12 @@
 from sqlalchemy.orm import Session
 
+from backend.api.api_models.users import UserCreateModel
 from backend.core.hashing import Hasher
-from backend.db.models.users import User
-from backend.schemas.users import UserCreate
+from backend.db.db_models.users import User
 
 
-def create_new_user(user: UserCreate, db: Session):
+
+def create_new_user(user: UserCreateModel, db: Session):
     user_model = User(
         username=user.username,
         email=user.email,

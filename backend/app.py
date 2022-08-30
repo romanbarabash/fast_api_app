@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-from backend.apis.base import api_router
+from backend.api.base_route import api_router
 from backend.config import PROJECT_TITLE, PROJECT_VERSION
 from backend.db.__init__ import Base
 from backend.db.session import engine

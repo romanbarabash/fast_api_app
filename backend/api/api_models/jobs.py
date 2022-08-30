@@ -4,7 +4,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class JobCreate(BaseModel):
+class JobCreateModel(BaseModel):
     title: str
     company: str
     location: str
@@ -14,7 +14,7 @@ class JobCreate(BaseModel):
     date_posted: Optional[date] = datetime.now().date()
 
 
-class ShowJob(BaseModel):
+class ShowJobModel(BaseModel):
     title: str
     company: str
     location: str
