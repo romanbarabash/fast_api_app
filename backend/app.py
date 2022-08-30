@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 
 from backend.apis.base import api_router
@@ -27,3 +28,7 @@ app = start()
 @app.get('/')
 def hello_api():
     return {'detail': 'Hello World'}
+
+
+if __name__ == '__main__':
+    uvicorn.run(app=app, port=8000, debug=True)
