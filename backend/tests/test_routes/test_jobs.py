@@ -6,7 +6,7 @@ def test_create_job(client):
         "title": "SDE 1 Yahoo",
         "company": "testhoo",
         "company_url": "https://wwww.fdj.com",
-        "location": "USA,NY",
+        "location": "USA, NY",
         "description": "Testing",
         "date_posted": "2022-07-20"
     }
@@ -19,7 +19,7 @@ def test_retreive_job_by_id(client):
         "title": "SDE 1 Yahoo",
         "company": "testhoo",
         "company_url": "https://wwww.fdj.com",
-        "location": "USA,NY",
+        "location": "USA, NY",
         "description": "Testing",
         "date_posted": "2022-07-20"
     }
