@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from backend.api.api_models.users import UserCreateModel
-from backend.core.hashing import Hasher
+from backend.db.hashing import Hasher
 from backend.db.db_models.users import User
 
 
