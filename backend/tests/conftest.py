@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from backend.api.base_route import api_router
+from backend.api.routes.base_route import api_router
 from backend.db import Base
 from backend.db.session import get_db
 
