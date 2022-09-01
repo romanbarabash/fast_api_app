@@ -32,4 +32,4 @@ def hello_api():
 
 
 if __name__ == '__main__':
-    uvicorn.run(app=app, port=8000, debug=True)
+    uvicorn.run(app=app, port=8001, debug=True)
