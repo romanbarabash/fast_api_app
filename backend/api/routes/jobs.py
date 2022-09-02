@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from backend.api.api_models.jobs import JobCreateModel, ShowJobModel
-from backend.api.routes.route_login import get_user_from_token
+from backend.api.routes.login import get_user_from_token
 from backend.db import User
 from backend.db.queries.jobs import create_new_job, retreive_job, list_jobs, update_job_by_id, delete_job_by_id
 from backend.db.session import get_db
