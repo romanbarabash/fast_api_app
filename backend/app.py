@@ -30,7 +30,7 @@ def start():
 app = start()
 
 
-@app.get('/', tags=['Home'],response_model=List[ShowJobModel])
+@app.get('/', tags=['Home'], response_model=List[ShowJobModel])
 def get_all_jobs(db: Session = Depends(get_db)):
     return list_jobs(db=db)
 
