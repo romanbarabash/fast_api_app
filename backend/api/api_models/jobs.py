@@ -12,6 +12,7 @@ class JobCreateModel(BaseModel):
     company_url: Optional[str] = None
     description: Optional[str] = None
     date_posted: Optional[date] = datetime.now().date()
+    owner_id: Optional[str] = None
 
 
 class ShowJobModel(BaseModel):
