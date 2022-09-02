@@ -1,10 +1,15 @@
-import uvicorn
-from fastapi import FastAPI
+from typing import List
 
+import uvicorn
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
+
+from backend.api.api_models.jobs import ShowJobModel
 from backend.api.routes.base_route import api_router
 from backend.config import PROJECT_TITLE, PROJECT_VERSION
 from backend.db.__init__ import Base
-from backend.db.session import engine
+from backend.db.queries.jobs import list_jobs
+from backend.db.session import engine, get_db
 
 
 def create_tables():
@@ -25,10 +30,9 @@ def start():
 app = start()
 
 
-@app.get('/')
-# TODO - remove
-def hello_api():
-    return {'detail': 'Hello World'}
+@app.get('/', tags=['Home'],response_model=List[ShowJobModel])
+def get_all_jobs(db: Session = Depends(get_db)):
+    return list_jobs(db=db)
 
 
 if __name__ == '__main__':

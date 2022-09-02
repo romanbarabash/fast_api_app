@@ -5,8 +5,8 @@ from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from jose import jwt, JWTError
 from requests import Session
 
-from backend.config import TOKEN_EXPIRE_TIME, SECRET_KEY, ALGORITHM
 from backend.api.access_token import create_access_token
+from backend.config import TOKEN_EXPIRE_TIME, SECRET_KEY, ALGORITHM
 from backend.db.hashing import Hasher
 from backend.db.queries.login import get_user
 from backend.db.session import get_db
@@ -48,7 +48,6 @@ def login_with_token(form_data: OAuth2PasswordRequestForm = Depends(),
 
     access_token_expire = timedelta(minutes=TOKEN_EXPIRE_TIME)
     access_token = create_access_token(data={"sub": user.email}, expires_delta=access_token_expire)
-    # response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
 
     return {"access_token": access_token,
             "token_type": "bearer"}
