@@ -1,17 +1,19 @@
-from backend.models.jobs import JobModelUI
+from backend.models.jobs import JobModelAPI
 
 
-def test_create_job(client, normal_user_token_headers):
-    job = JobModelUI.create().to_json()
+def test_create_job(get_job_service):
+    job_service = get_job_service
+    job = JobModelAPI.create()
+    response = job_service.create_job(job=job)
 
-    response = client.post(url="/job/create-job", data=job, headers=normal_user_token_headers)
     assert response.status_code == 200
-    assert response.json()["title"] in job
+    assert response.json()["title"] in job.title
 
-def test_retreive_job_by_id(client, normal_user_token_headers):
-    job = JobModelUI.create().to_json()
 
-    client.post(url="/job/create-job", data=job, headers=normal_user_token_headers)
-    response = client.get("/job/get/1")
-    assert response.status_code == 200
-    assert response.json()["title"] in job
+def test_retreive_job_by_id(get_job_service, create_job):
+    job_service = get_job_service
+    job = create_job.json()
+
+    # response = job_service.get_job_by_id(job=job.id)
+    # assert response.status_code == 200
+    # assert response.json()["title"] == job.title

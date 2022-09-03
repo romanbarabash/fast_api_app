@@ -14,6 +14,8 @@ from backend.config import TEST_USER_EMAIL
 from backend.db import Base
 from backend.db.session import get_db
 from backend.utils import authentication_token_from_email
+from tests.services.jobs import JobsService
+from tests.services.users import UserService
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -74,7 +76,16 @@ def client(app: FastAPI, db_session: SessionTesting) -> Generator[TestClient, An
 
 
 @pytest.fixture
-def normal_user_token_headers(client: TestClient, db_session: Session):
+def get_headers(client: TestClient, db_session: Session):
     return authentication_token_from_email(
-        client=client, email=TEST_USER_EMAIL, db=db_session
-    )
+        client=client, email=TEST_USER_EMAIL, db=db_session)
+
+
+@pytest.fixture
+def get_user_service(client):
+    return UserService(client)
+
+
+@pytest.fixture
+def get_job_service(client, get_headers):
+    return JobsService(client, get_headers)

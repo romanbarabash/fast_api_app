@@ -32,6 +32,6 @@ def authentication_token_from_email(client: TestClient, email: str, db: Session)
     password = "random-passW0rd"
     user = get_user(username=email, db=db)
     if not user:
-        user_in_create = UserModelAPI(username=email, email=email, password=password)
-        user = create_new_user(user=user_in_create, db=db)
+        new_user = UserModelAPI(username=email, email=email, password=password)
+        create_new_user(user=new_user, db=db)
     return user_authentication_headers(client=client, email=email, password=password)
