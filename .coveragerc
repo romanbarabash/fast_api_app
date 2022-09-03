@@ -1,2 +1,2 @@
 [run]
-omit=backend/tests/*
+omit=tests/*
