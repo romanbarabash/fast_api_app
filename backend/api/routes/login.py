@@ -15,7 +15,7 @@ router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login/token")
 
 
-def _authenticate_user(username: str, password: str, db: Session):
+def _get_user(username: str, password: str, db: Session):
     user = get_user(username=username, db=db)
     if not user or not Hasher.verify_password(password, user.hashed_password):
         return None
@@ -41,13 +41,13 @@ def get_user_from_token(token: str = Depends(oauth2_scheme), db: Session = Depen
 @router.post("/token")
 def login_with_token(form_data: OAuth2PasswordRequestForm = Depends(),
                      db: Session = Depends(get_db)):
-    user = _authenticate_user(form_data.username, form_data.password, db)
+    user = _get_user(form_data.username, form_data.password, db)
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Incorrect username or password")
 
-    access_token_expire = timedelta(minutes=TOKEN_EXPIRE_TIME)
-    access_token = create_access_token(data={"sub": user.email}, expires_delta=access_token_expire)
-
+    token_expire_time = timedelta(minutes=TOKEN_EXPIRE_TIME)
+    access_token = create_access_token(data={"sub": user.email},
+                                       expires_delta=token_expire_time)
     return {"access_token": access_token,
             "token_type": "bearer"}
