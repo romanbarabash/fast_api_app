@@ -22,7 +22,7 @@ def retreive_job_by_id(id: int, db: Session = Depends(get_db)):
     job = retreive_job(id=id, db=db)
     if not job:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"Job with id {id} does not exist")
+                            detail=f"Job with id {id} does not exist.")
     return job
 
 
@@ -36,13 +36,13 @@ def update_job(id: int, job: JobCreateModel, db: Session = Depends(get_db), curr
     job_retrieved = retreive_job(id=id, db=db)
     if not job_retrieved:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
-                            detail=f"Job with id {id} does not exist")
+                            detail=f"Job with id {id} does not exist.")
     if job_retrieved.owner_id == current_user.id or current_user.is_superuser:
         update_job_by_id(id=id, job=job, db=db, owner_id=current_user.id)
         return {"detail": "Job Successfully updated."}
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="No permission to perform update operation")
+                            detail="No permission to perform update operation.")
 
 
 @router.delete("/delete/{id}")
@@ -56,4 +56,4 @@ def delete_job(id: int, db: Session = Depends(get_db), current_user: User = Depe
         return {"detail": "Job Successfully deleted."}
     else:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="No permission to perform delete operation")
+                            detail="No permission to perform delete operation.")

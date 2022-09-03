@@ -24,14 +24,14 @@ def _get_user(username: str, password: str, db: Session):
 
 def get_user_from_token(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     credentials_exception = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                                          detail="Could not validate credentials")
+                                          detail="Could not validate credentials.")
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
-    except JWTError:
-        raise credentials_exception
+    except JWTError as e:
+        raise (e, credentials_exception)
     user = get_user(username=username, db=db)
     if user is None:
         raise credentials_exception
@@ -44,7 +44,7 @@ def login_with_token(form_data: OAuth2PasswordRequestForm = Depends(),
     user = _get_user(form_data.username, form_data.password, db)
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="Incorrect username or password")
+                            detail="Incorrect username or password.")
 
     token_expire_time = timedelta(minutes=TOKEN_EXPIRE_TIME)
     access_token = create_access_token(data={"sub": user.email},
