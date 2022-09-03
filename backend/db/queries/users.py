@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 
-from backend.models.users import UserModelAPI
+
 from backend.db.hashing import Hasher
 from backend.db.db_models.users import User
-
+from backend.models.users import UserModelAPI
 
 
 def create_new_user(user: UserModelAPI, db: Session):

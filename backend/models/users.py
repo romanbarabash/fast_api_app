@@ -1,13 +1,23 @@
-from pydantic import BaseModel, EmailStr
+import random
+
+from pydantic import EmailStr
+
+from backend.models.base import Model, fake
 
 
-class UserModelAPI(BaseModel):
+class UserModelAPI(Model):
     username: str
     email: EmailStr
     password: str
 
+    @classmethod
+    def create(cls):
+        return cls(username=fake.last_name(),
+                   email=fake.ascii_safe_email(),
+                   password=str(random.randint(1_000_000, 9_999_999)))
 
-class UserModelUI(BaseModel):
+
+class UserModelUI(Model):
     username: str
     email: EmailStr
     is_active: bool

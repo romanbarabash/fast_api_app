@@ -1,21 +1,10 @@
-import json
 from datetime import date, datetime
 from typing import Optional
 
-from pydantic import BaseModel
-
-from backend.utils import fake
+from backend.models.base import Model, fake
 
 
-class JobModel(BaseModel):
-    def to_dict(self):
-        return dict(self)
-
-    def to_json(self):
-        return json.dumps(self.to_dict(), indent=4, default=lambda x: str(x))
-
-
-class JobModelAPI(JobModel):
+class JobModelAPI(Model):
     title: str
     company: str
     location: str
@@ -26,7 +15,7 @@ class JobModelAPI(JobModel):
     owner_id: Optional[str] = None
 
 
-class JobModelUI(JobModel):
+class JobModelUI(Model):
     title: str
     company: str
     location: str

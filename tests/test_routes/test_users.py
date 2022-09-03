@@ -1,10 +1,10 @@
-import json
+from backend.models.users import UserModelAPI
 
 
 def test_create_user(client):
-    data = {"username": "testuser", "email": "testuser@nofoobar.com", "password": "testing"}
-    response = client.post("/users/", json.dumps(data))
+    user = UserModelAPI.create().to_json()
+    response = client.post(url="/users/", data=user)
 
     assert response.status_code == 200
-    assert response.json()["email"] == "testuser@nofoobar.com"
+    assert response.json()["email"] in user
     assert response.json()["is_active"] == True
