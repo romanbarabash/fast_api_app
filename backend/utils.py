@@ -4,9 +4,9 @@ from faker import Faker
 from sqlalchemy.orm import Session
 from starlette.testclient import TestClient
 
-from backend.models.users import UserModelAPI
 from backend.db.queries.login import get_user
 from backend.db.queries.users import create_new_user
+from backend.models.users import UserModelAPI
 
 fake = Faker(['en-US'])
 
@@ -29,10 +29,6 @@ def user_authentication_headers(client: TestClient, email: str, password: str):
 
 
 def authentication_token_from_email(client: TestClient, email: str, db: Session):
-    """
-    Return a valid token for the user with given email.
-    If the user doesn't exist it is created first.
-    """
     password = "random-passW0rd"
     user = get_user(username=email, db=db)
     if not user:

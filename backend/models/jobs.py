@@ -1,10 +1,21 @@
+import json
 from datetime import date, datetime
 from typing import Optional
 
 from pydantic import BaseModel
 
+from backend.utils import fake
 
-class JobModelAPI(BaseModel):
+
+class JobModel(BaseModel):
+    def to_dict(self):
+        return dict(self)
+
+    def to_json(self):
+        return json.dumps(self.to_dict(), indent=4, default=lambda x: str(x))
+
+
+class JobModelAPI(JobModel):
     title: str
     company: str
     location: str
@@ -15,7 +26,7 @@ class JobModelAPI(BaseModel):
     owner_id: Optional[str] = None
 
 
-class JobModelUI(BaseModel):
+class JobModelUI(JobModel):
     title: str
     company: str
     location: str
@@ -25,3 +36,12 @@ class JobModelUI(BaseModel):
 
     class Config():
         orm_mode = True
+
+    @classmethod
+    def create(cls):
+        return cls(title=fake.word().title() + ' Developer',
+                   company=fake.word().title() + ' Solutions',
+                   company_url=f'www.{fake.word()}-solutions.com',
+                   location='US, CA',
+                   description=f'What drives us: {fake.word()} and {fake.word()}',
+                   date_posted=str(datetime.now().date()))
