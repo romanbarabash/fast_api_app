@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
 
-from backend.api.api_models.jobs import JobCreateModel
+from backend.models.jobs import JobModelAPI
 from backend.db import Job
 
 
-def create_new_job(job_model: JobCreateModel, db: Session, owner_id: int):
+def create_new_job(job_model: JobModelAPI, db: Session, owner_id: int):
     job = Job(title=job_model.title,
               company=job_model.company,
               location=job_model.location,
@@ -28,7 +28,7 @@ def list_jobs(db: Session):
     return jobs
 
 
-def update_job_by_id(id: int, job: JobCreateModel, db: Session, owner_id: int):
+def update_job_by_id(id: int, job: JobModelAPI, db: Session, owner_id: int):
     existing_job = db.query(Job).filter(Job.id == id)
     job.owner_id = owner_id
     if not existing_job.first():

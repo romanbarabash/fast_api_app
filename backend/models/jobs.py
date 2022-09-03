@@ -4,7 +4,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class JobCreateModel(BaseModel):
+class JobModelAPI(BaseModel):
     title: str
     company: str
     location: str
@@ -15,7 +15,7 @@ class JobCreateModel(BaseModel):
     owner_id: Optional[str] = None
 
 
-class ShowJobModel(BaseModel):
+class JobModelUI(BaseModel):
     title: str
     company: str
     location: str

@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 
-from backend.api.api_models.jobs import ShowJobModel
+from backend.models.jobs import JobModelUI
 from backend.api.routes.base_route import api_router
 from backend.config import PROJECT_TITLE, PROJECT_VERSION
 from backend.db.__init__ import Base
@@ -30,7 +30,7 @@ def start():
 app = start()
 
 
-@app.get('/', tags=['Home'], response_model=List[ShowJobModel])
+@app.get('/', tags=['Home'], response_model=List[JobModelUI])
 def get_all_jobs(db: Session = Depends(get_db)):
     return list_jobs(db=db)
 
