@@ -28,5 +28,6 @@ class JobModelAPI(JobModel):
 
 
 class JobModelUI(JobModel):
+    id: Optional[int] = None
     class Config():
         orm_mode = True

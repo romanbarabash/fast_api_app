@@ -1,4 +1,5 @@
 import random
+from typing import Optional
 
 from pydantic import EmailStr
 
@@ -18,6 +19,7 @@ class UserModelAPI(Model):
 
 
 class UserModelUI(Model):
+    id: Optional[int] = None
     username: str
     email: EmailStr
     is_active: bool

@@ -8,7 +8,6 @@ from backend.models.users import UserModelAPI
 
 def create_new_user(user: UserModelAPI, db: Session):
     user_model = User(
-        id=user.id,
         username=user.username,
         email=user.email,
         hashed_password=Hasher.get_password_hash(user.password),
