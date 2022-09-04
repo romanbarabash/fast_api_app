@@ -82,10 +82,11 @@ def get_headers(client: TestClient, db_session: Session):
 
 
 @pytest.fixture
-def get_user_service(client):
-    return UserService(client)
+def get_user_service(client, get_headers):
+    return UserService(client, get_headers)
 
 
 @pytest.fixture
 def get_job_service(client, get_headers):
     return JobsService(client, get_headers)
+

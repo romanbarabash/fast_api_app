@@ -1,17 +1,20 @@
-import jsonschema
-
 from backend.models.jobs import JobModelAPI
+from tests.services.base import AssertResponse
 from tests.services.json_schemas.job_schemas import job_schema
 
 
 def test_create_job(get_job_service):
     job_service = get_job_service
     job = JobModelAPI.create()
-    response = job_service.create_job(job=job)
 
-    assert response.status_code == 200
-    assert response.json()["title"] == job.title
-    jsonschema.validate(response.json(), job_schema)
+    response = job_service \
+        .create_job(job=job)
+
+    AssertResponse(response) \
+        .status_code_is(200) \
+        .has_items(7) \
+        .value_matcher(actual_response_item="title", expected_item=job.title) \
+        .validate_schema(job_schema)
 
 
 def test_retreive_job_by_id(get_job_service, create_job):
@@ -19,6 +22,8 @@ def test_retreive_job_by_id(get_job_service, create_job):
     job = create_job.json()
     response = job_service.get_job_by_id(id=job.get('id'))
 
-    assert response.status_code == 200
-    assert response.json()["title"] == job.get('title')
-    jsonschema.validate(response.json(), job_schema)
+    AssertResponse(response) \
+        .status_code_is(200) \
+        .has_items(7) \
+        .value_matcher(actual_response_item="title", expected_item=job.get('title')) \
+        .validate_schema(job_schema)

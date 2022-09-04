@@ -1,10 +1,11 @@
 from backend.models.users import UserModelAPI
+from tests.services.base import BaseService
 
 
-class UserService:
+class UserService(BaseService):
 
-    def __init__(self, client):
-        self.client = client
+    def __init__(self, client, headers):
+        super().__init__(client, headers)
 
     def create_user(self, user: UserModelAPI):
         path = '/users/'

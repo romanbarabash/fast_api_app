@@ -1,11 +1,11 @@
 from backend.models.jobs import JobModelAPI
+from tests.services.base import BaseService
 
 
-class JobsService:
+class JobsService(BaseService):
 
     def __init__(self, client, headers):
-        self.client = client
-        self.headers = headers
+        super().__init__(client, headers)
 
     def create_job(self, job: JobModelAPI):
         path = '/job/create-job'
