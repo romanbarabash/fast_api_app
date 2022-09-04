@@ -14,3 +14,7 @@ class JobsService(BaseService):
     def get_job_by_id(self, id: int):
         path = f'/job/get/{id}'
         return self.client.get(url=path)
+
+    def get_all_jobs(self):
+        path = '/job/all'
+        return self.client.get(url=path)
