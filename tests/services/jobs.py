@@ -18,3 +18,11 @@ class JobsService(BaseService):
     def get_all_jobs(self):
         path = '/job/all'
         return self.client.get(url=path)
+
+    def update_job(self, id: int, job: JobModelAPI):
+        path = f'/job/update/{id}'
+        return self.client.put(url=path, data=job.to_json(), headers=self.headers)
+
+    def delete_job(self, id: int):
+        path = f'/job/delete/{id}'
+        return self.client.delete(url=path, headers=self.headers)

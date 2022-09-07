@@ -1,11 +1,12 @@
 import jsonschema
 from hamcrest import assert_that, equal_to
+from requests import Session
 
 
 class BaseService:
 
     def __init__(self, client, headers):
-        self.client = client
+        self.client: Session = client
         self.headers = headers
 
 
