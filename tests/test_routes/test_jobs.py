@@ -13,7 +13,7 @@ def test_create_job(get_job_service):
     AssertResponse(response) \
         .status_code_is(200) \
         .has_items(7) \
-        .value_matcher(actual_response_item="title", expected_item=job.title) \
+        .value_equals(actual_response_item="title", expected_item=job.title) \
         .validate_schema(job_schema)
 
 
@@ -25,7 +25,7 @@ def test_retreive_job_by_id(get_job_service, create_job):
     AssertResponse(response) \
         .status_code_is(200) \
         .has_items(7) \
-        .value_matcher(actual_response_item="title", expected_item=job.get('title')) \
+        .value_equals(actual_response_item="title", expected_item=job.get('title')) \
         .validate_schema(job_schema)
 
 
@@ -49,7 +49,7 @@ def test_update_job(get_job_service, create_job):
 
     AssertResponse(response) \
         .status_code_is(200) \
-        .value_matcher(actual_response_item='detail', expected_item='Job Successfully updated.')
+        .value_equals(actual_response_item='detail', expected_item='Job Successfully updated.')
 
     response = job_service \
         .get_job_by_id(id=current_job.get('id'))
@@ -58,7 +58,7 @@ def test_update_job(get_job_service, create_job):
         .status_code_is(200) \
         .has_items(7) \
         .validate_schema(job_schema) \
-        .value_matcher(actual_response_item="title", expected_item=updated_job.title)
+        .value_equals(actual_response_item="title", expected_item=updated_job.title)
 
 
 def test_delete_job(get_job_service, create_job):
@@ -70,7 +70,7 @@ def test_delete_job(get_job_service, create_job):
 
     AssertResponse(response) \
         .status_code_is(200) \
-        .value_matcher(actual_response_item='detail', expected_item='Job Successfully deleted.')
+        .value_equals(actual_response_item='detail', expected_item='Job Successfully deleted.')
 
     response = job_service \
         .get_job_by_id(id=job.get('id'))

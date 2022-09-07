@@ -15,6 +15,7 @@ from backend.db import Base
 from backend.db.session import get_db
 from backend.utils import authentication_token_from_email
 from tests.services.jobs import JobsService
+from tests.services.login import LoginService
 from tests.services.users import UserService
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -89,4 +90,8 @@ def get_user_service(client, get_headers):
 @pytest.fixture
 def get_job_service(client, get_headers):
     return JobsService(client, get_headers)
+
+@pytest.fixture
+def get_login_service(client, get_headers):
+    return LoginService(client, get_headers)
 

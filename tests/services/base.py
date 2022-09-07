@@ -1,5 +1,5 @@
 import jsonschema
-from hamcrest import assert_that, equal_to
+from hamcrest import assert_that, equal_to, contains_string
 from requests import Session
 
 
@@ -23,8 +23,11 @@ class AssertResponse:
         assert_that(len(self.response.json()), equal_to(obj_items_qty))
         return self
 
-    def value_matcher(self, actual_response_item, expected_item):
-        assert_that(self.response.json()[actual_response_item]), equal_to(expected_item)
+    def value_equals(self, actual_response_item, expected_item, is_contains=False):
+        if is_contains:
+            assert_that(self.response.json()[actual_response_item]), contains_string((expected_item))
+        else:
+            assert_that(self.response.json()[actual_response_item]), equal_to(expected_item)
         return self
 
     def validate_schema(self, expected_schema):
