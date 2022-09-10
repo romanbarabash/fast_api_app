@@ -48,7 +48,7 @@ def test_login_incorrect_password(get_login_service, create_user):
     user_model, user_response = create_user
 
     response = login_service.login_user(username=user_model.email,
-                                        password=str(random.randint(1_000_000, 9_999_999)))
+                                        password=str(random.randint(10000, 99999)))
 
     AssertResponse(response) \
         .status_code_is(401) \
