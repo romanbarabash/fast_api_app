@@ -23,11 +23,12 @@ class AssertResponse:
         assert_that(len(self.response.json()), equal_to(obj_items_qty))
         return self
 
-    def value_equals(self, actual_response_item, expected_item, is_contains=False):
+    def value_equals(self, actual_response_item, expected_text, is_contains=False):
+        response_items = self.response.json()[actual_response_item]
         if is_contains:
-            assert_that(self.response.json()[actual_response_item]), contains_string((expected_item))
+            assert_that(response_items), contains_string((expected_text))
         else:
-            assert_that(self.response.json()[actual_response_item]), equal_to(expected_item)
+            assert_that(response_items), equal_to(expected_text)
         return self
 
     def validate_schema(self, expected_schema):

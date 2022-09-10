@@ -1,8 +1,11 @@
+import pytest
+
 from backend.models.users import UserModelAPI
 from tests.services.base import AssertResponse
 from tests.services.json_schemas.user_schemas import user_schema
 
 
+@pytest.mark.possitive
 def test_create_user(get_user_service):
     user_service = get_user_service
     user_model = UserModelAPI.create()
@@ -12,11 +15,12 @@ def test_create_user(get_user_service):
     AssertResponse(response) \
         .status_code_is(200) \
         .has_items(4) \
-        .value_equals(actual_response_item="email", expected_item=user_model.email) \
-        .value_equals(actual_response_item="is_active", expected_item=True) \
+        .value_equals(actual_response_item="email", expected_text=user_model.email) \
+        .value_equals(actual_response_item="is_active", expected_text=True) \
         .validate_schema(user_schema)
 
 
+@pytest.mark.negative
 def test_create_user_empty_body(get_user_service):
     user_service = get_user_service
 
@@ -24,4 +28,4 @@ def test_create_user_empty_body(get_user_service):
 
     AssertResponse(response) \
         .status_code_is(422) \
-        .value_equals(actual_response_item="detail", expected_item='value_error.missing', is_contains=True)
+        .value_equals(actual_response_item="detail", expected_text='value_error.missing', is_contains=True)

@@ -15,6 +15,7 @@ def create_user(get_user_service):
     return user_model, user_response
 
 
+@pytest.mark.possitive
 def test_login_with_token(get_login_service, create_user):
     login_service = get_login_service
     user_model, user_response = create_user
@@ -28,6 +29,7 @@ def test_login_with_token(get_login_service, create_user):
         .validate_schema(token_schema)
 
 
+@pytest.mark.negative
 def test_login_incorrect_username(get_login_service, create_user):
     login_service = get_login_service
     user_model, user_response = create_user
@@ -40,6 +42,7 @@ def test_login_incorrect_username(get_login_service, create_user):
         .value_equals(actual_response_item='detail', expected_text='Incorrect username or password.')
 
 
+@pytest.mark.negative
 def test_login_incorrect_password(get_login_service, create_user):
     login_service = get_login_service
     user_model, user_response = create_user
@@ -49,4 +52,4 @@ def test_login_incorrect_password(get_login_service, create_user):
 
     AssertResponse(response) \
         .status_code_is(401) \
-        .value_equals(actual_response_item='detail', expected_item='Incorrect username or password.')
+        .value_equals(actual_response_item='detail', expected_text='Incorrect username or password.')
