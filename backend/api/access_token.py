@@ -3,7 +3,7 @@ from typing import Union
 
 from jose import jwt
 
-from backend.config import SECRET_KEY, ALGORITHM, TOKEN_EXPIRE_TIME
+from config import SECRET_KEY, ALGORITHM, TOKEN_EXPIRE_TIME
 
 
 def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None):

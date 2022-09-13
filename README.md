@@ -2,7 +2,7 @@ To run app:
 1. run `backend/app.py` as is
 2. run `uvicorn backend.app:app --reload` as command in the terminal
 
-The app will be available under `127.0.0.1:8001`
+The app will be available under `127.0.0.1:8000`
 
-Docs will be available `127.0.0.1:8001/docs`
+Docs will be available `127.0.0.1:8000/docs`
 

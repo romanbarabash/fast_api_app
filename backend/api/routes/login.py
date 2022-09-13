@@ -6,7 +6,7 @@ from jose import jwt, JWTError
 from requests import Session
 
 from backend.api.access_token import create_access_token
-from backend.config import TOKEN_EXPIRE_TIME, SECRET_KEY, ALGORITHM
+from config import TOKEN_EXPIRE_TIME, SECRET_KEY, ALGORITHM
 from backend.db.hashing import Hasher
 from backend.db.queries.login import get_user
 from backend.db.session import get_db

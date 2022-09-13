@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from backend.models.jobs import JobModelUI
 from backend.api.routes.base_route import api_router
-from backend.config import PROJECT_TITLE, PROJECT_VERSION
+from config import PROJECT_TITLE, PROJECT_VERSION
 from backend.db.__init__ import Base
 from backend.db.queries.jobs import list_jobs
 from backend.db.session import engine, get_db
@@ -36,4 +36,4 @@ def get_all_jobs(db: Session = Depends(get_db)):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app=app, port=8001, debug=True)
+    uvicorn.run(app=app, port=8000, debug=True)

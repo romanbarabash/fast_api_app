@@ -10,7 +10,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
 from backend.api.routes.base_route import api_router
-from backend.config import TEST_USER_EMAIL
+from config import TEST_USER_EMAIL
 from backend.db import Base
 from backend.db.session import get_db
 from backend.utils import authentication_token_from_email
