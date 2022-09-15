@@ -4,7 +4,6 @@ services:
   web:
     network_mode: "none"
     build: .
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn backend.app:app --host 0.0.0.0'
     ports:
       - 8008:8000
     environment:
@@ -15,6 +14,7 @@ services:
       - TEST_USER_EMAIL=${TEST_USER_EMAIL}
     depends_on:
       - db
+    entrypoint: uvicorn backend.app:app --host 0.0.0.0
   db:
     network_mode: "none"
     image: postgres:13-alpine
