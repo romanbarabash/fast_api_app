@@ -4,12 +4,12 @@ import uvicorn
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 
-from backend.models.jobs import JobModelUI
 from backend.api.routes.base_route import api_router
-from config import PROJECT_TITLE, PROJECT_VERSION
 from backend.db.__init__ import Base
 from backend.db.queries.jobs import list_jobs
 from backend.db.session import engine, get_db
+from backend.models.jobs import JobModelUI
+from config import PROJECT_TITLE, PROJECT_VERSION
 
 
 def create_tables():
