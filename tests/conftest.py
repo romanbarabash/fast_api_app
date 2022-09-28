@@ -91,6 +91,7 @@ def get_user_service(client, get_headers):
 def get_job_service(client, get_headers):
     return JobsService(client, get_headers)
 
+
 @pytest.fixture
 def get_login_service(client, get_headers):
     return LoginService(client, get_headers)
