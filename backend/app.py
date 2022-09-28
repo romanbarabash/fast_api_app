@@ -36,4 +36,4 @@ def get_all_jobs(db: Session = Depends(get_db)):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app=app, port=8000, debug=True)
+    uvicorn.run(app=app, port=8008, debug=True)
