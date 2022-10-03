@@ -26,6 +26,7 @@ def start():
     include_router(app)
     return app
 
+
 app = start()
 
 

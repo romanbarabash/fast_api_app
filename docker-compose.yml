@@ -2,8 +2,8 @@ version: '3.9'
 
 services:
   web:
-    restart: always
     build: .
+    restart: always
     ports:
       - 8008:8008
     environment:
@@ -14,7 +14,6 @@ services:
       - TEST_USER_EMAIL=${TEST_USER_EMAIL}
     depends_on:
       - postgres
-    entrypoint: uvicorn backend.app:app --host 0.0.0.0 --port 8008
   postgres:
     image: postgres:13-alpine
     restart: always
