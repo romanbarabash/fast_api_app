@@ -17,9 +17,9 @@ Before run locally, setup db:
 
 To run locally:
 1. creating a virtual environment `python -m venv venv`
-2. activating a virtual environment `source venv/bin/activate`- Linux or macOS,
-`.\venv\Scripts\activate`- Windows
-3. Installing packages `pip install -r requirements.txt`
+2. activating a virtual environment `source venv/bin/activate` - Linux or macOS,
+`.\venv\Scripts\activate` - Windows
+3. installing packages `pip install -r requirements.txt`
 4. run `backend/app.py` as is OR run `uvicorn backend.app:app --reload` as command in the terminal
 
 - The app will be available under `127.0.0.1:8000/`
