@@ -6,11 +6,6 @@ env.read_env(verbose=True)
 PROJECT_TITLE: str = "Job Board"
 PROJECT_VERSION: str = "0.1"
 
-POSTGRES_USER: str = env.str("POSTGRES_USER")
-POSTGRES_PASSWORD = env.str("POSTGRES_PASSWORD")
-POSTGRES_SERVER: str = env.str("POSTGRES_SERVER", "localhost")
-POSTGRES_PORT: str = env.int("POSTGRES_PORT", 5432)  # default postgres port is 5432
-POSTGRES_DB: str = env.str("POSTGRES_DB")
 DATABASE_URL: str = env.str("DATABASE_URL")
 
 SECRET_KEY: str = env.str("SECRET_KEY")
