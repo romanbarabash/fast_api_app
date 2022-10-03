@@ -33,5 +33,6 @@ TO DO
 
 ### To run locally:
 Before run tests, start app with docker or locally
-1. run `pytest /tests` 
+1. run `pytest --html=report.html --self-contained-html tests` 
+2. verify tests results under `report.html` file
 
