@@ -5,7 +5,7 @@ from tests.services.base import AssertResponse
 from tests.services.json_schemas.user_schemas import user_schema
 
 
-@pytest.mark.possitive
+@pytest.mark.positive
 def test_create_user(get_user_service):
     user_service = get_user_service
     user_model = UserModelAPI.create()

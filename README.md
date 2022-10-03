@@ -32,6 +32,6 @@ To run locally:
 TO DO
 
 ### To run locally:
-
-run `pytest /tests`
+Before run tests, start app with docker or locally
+1. run `pytest /tests` 
 

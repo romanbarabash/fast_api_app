@@ -15,7 +15,7 @@ def create_user(get_user_service):
     return user_model, user_response
 
 
-@pytest.mark.possitive
+@pytest.mark.positive
 def test_login_with_token(get_login_service, create_user):
     login_service = get_login_service
     user_model, user_response = create_user
