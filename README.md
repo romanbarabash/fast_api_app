@@ -5,7 +5,7 @@
 
 - The app will be available under `0.0.0.0:8008/`
 - Docs will be available `0.0.0.0:8008/docs`
-- Tests will be run and generate report into `report.html`
+- Tests will run and generate report into `report.html`
 
 To open tests report:
 
