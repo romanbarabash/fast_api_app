@@ -1,8 +1,10 @@
 version: '3'
 
 services:
-  web:
-    build: .
+  backend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_backend
     ports:
       - 8008:8008
     environment:
@@ -13,6 +15,12 @@ services:
       - TEST_USER_EMAIL=${TEST_USER_EMAIL}
     depends_on:
       - postgres
+  tests:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_tests
+    depends_on:
+      - backend
   postgres:
     image: postgres:13-alpine
     restart: always
